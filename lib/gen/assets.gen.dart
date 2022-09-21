@@ -43,9 +43,17 @@ class $AssetsIconsGen {
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
+  /// File path: assets/images/desktop_login_background.png
+  AssetGenImage get desktopLoginBackground =>
+      const AssetGenImage('assets/images/desktop_login_background.png');
+
   /// File path: assets/images/image_truck.png
   AssetGenImage get imageTruck =>
       const AssetGenImage('assets/images/image_truck.png');
+
+  /// File path: assets/images/logo_metamask.png
+  AssetGenImage get logoMetamask =>
+      const AssetGenImage('assets/images/logo_metamask.png');
 }
 
 class Assets {
