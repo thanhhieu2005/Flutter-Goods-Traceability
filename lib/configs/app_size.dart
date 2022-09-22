@@ -21,7 +21,7 @@ class AppSizes {
   /// basic size for tablet
   static final double basicSize = 8.sp;
 
-  /// large border radius 12.r
+  /// large border radius 10.r
   static final double largeRadius = 10.r;
 
   /// extra large border radius 16.r

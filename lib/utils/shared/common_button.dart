@@ -9,6 +9,10 @@ class CommonButton extends StatelessWidget {
   final double? height;
   final double? width;
   final String content;
+  final Color? backgroundColor;
+  final TextStyle? contentTextStyle;
+  final double? borderRadiusSize;
+  final EdgeInsetsGeometry? contentPadding;
 
   /// default aligment to center
   final Alignment? alignment;
@@ -19,29 +23,35 @@ class CommonButton extends StatelessWidget {
     this.width,
     this.alignment,
     required this.content,
+    this.backgroundColor,
+    this.contentTextStyle,
+    this.borderRadiusSize,
+    this.contentPadding,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onTap,
-      child: Align(
-        alignment: alignment ?? Alignment.center,
+    return Align(
+      alignment: alignment ?? Alignment.center,
+      child: InkWell(
+        onTap: onTap,
         child: Container(
           height: height,
           width: width,
-          padding: EdgeInsets.symmetric(vertical: 24.h),
+          padding: contentPadding ?? EdgeInsets.symmetric(vertical: 24.h),
           decoration: BoxDecoration(
-            color: AppColors.kPrimary1,
-            borderRadius: BorderRadius.circular(AppSizes.largeRadius),
+            color: backgroundColor ?? AppColors.kPrimary1,
+            borderRadius:
+                BorderRadius.circular(borderRadiusSize ?? AppSizes.largeRadius),
           ),
           child: Center(
             child: Text(
-              content,
-              style: AppStyles.titleLarge.copyWith(
-                color: AppColors.kWhite,
-                fontWeight: FontWeight.w500,
-              ),
+              content.toUpperCase(),
+              style: contentTextStyle ??
+                  AppStyles.titleLarge.copyWith(
+                    color: AppColors.kWhite,
+                    fontWeight: FontWeight.w500,
+                  ),
             ),
           ),
         ),
