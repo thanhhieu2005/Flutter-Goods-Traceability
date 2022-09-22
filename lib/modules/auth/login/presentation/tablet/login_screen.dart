@@ -54,7 +54,7 @@ class _TabletLoginScreenState extends State<TabletLoginScreen> {
                     },
                   ),
                   Text(
-                    'Sign In',
+                    'Đăng nhập',
                     style: AppStyles.displayLarge.copyWith(
                       fontWeight: FontWeight.w700,
                       color: AppColors.kPrimary1,
@@ -80,7 +80,7 @@ class _TabletLoginScreenState extends State<TabletLoginScreen> {
                     height: 16.h,
                   ),
                   const CommonTextFormField(
-                    titleForm: 'Password',
+                    titleForm: 'Mật khẩu',
                     maxLines: 1,
                     textInputType: TextInputType.none,
                     obscureText: true,
@@ -91,7 +91,7 @@ class _TabletLoginScreenState extends State<TabletLoginScreen> {
                   Align(
                     alignment: Alignment.centerRight,
                     child: Text(
-                      'Forgot Password?',
+                      'Quên mật khẩu?',
                       style: AppStyles.labelSmall
                           .copyWith(color: AppColors.kPrimary2),
                     ),
@@ -100,7 +100,7 @@ class _TabletLoginScreenState extends State<TabletLoginScreen> {
                     height: 32.h,
                   ),
                   CommonButton(
-                    content: 'Login',
+                    content: 'Đăng nhập',
                     width: 280.w,
                     onTap: () {},
                   ),
@@ -122,7 +122,7 @@ class _TabletLoginScreenState extends State<TabletLoginScreen> {
           Padding(
             padding: EdgeInsets.only(top: 14.h),
             child: Text(
-              'No account?' '\n' ' Register now',
+              'Bạn chưa có tài khoản?' '\n' ' Đăng ký ngay',
               style: AppStyles.titleSmall.copyWith(
                 color: AppColors.kPrimary2,
               ),
@@ -145,7 +145,7 @@ class _TabletLoginScreenState extends State<TabletLoginScreen> {
         mainAxisSize: MainAxisSize.min,
         children: [
           Text(
-            'Sign in with MetaMask',
+            'Đăng nhập với MetaMask',
             style: AppStyles.bodyLarge.copyWith(
               color: AppColors.kWhite,
             ),
@@ -180,7 +180,7 @@ class _TabletLoginScreenState extends State<TabletLoginScreen> {
           ),
         ),
         Text(
-          'Or',
+          'Hoặc',
           style: AppStyles.titleMedium,
         ),
         Container(

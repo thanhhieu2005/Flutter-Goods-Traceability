@@ -58,7 +58,7 @@ class _TabletRegisterScreenState extends State<TabletRegisterScreen> {
                         Padding(
                           padding: EdgeInsets.only(top: 14.h),
                           child: Text(
-                            'Already account?' '\n' ' Login here',
+                            'Đã có tài khoản?' '\n' ' Đăng nhập ngay',
                             style: AppStyles.titleSmall.copyWith(
                               color: AppColors.kPrimary2,
                             ),
@@ -68,7 +68,7 @@ class _TabletRegisterScreenState extends State<TabletRegisterScreen> {
                     ),
                   ),
                   Text(
-                    'Sign Up',
+                    'Đăng ký',
                     style: AppStyles.displayLarge.copyWith(
                       color: AppColors.kPrimary1,
                       fontWeight: FontWeight.w700,
@@ -82,13 +82,13 @@ class _TabletRegisterScreenState extends State<TabletRegisterScreen> {
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       CommonTextFormField(
-                        titleForm: 'First Name',
+                        titleForm: 'Tên',
                         titleRequired: true,
                         maxLines: 1,
                         width: 240.w,
                       ),
                       CommonTextFormField(
-                        titleForm: 'Last Name',
+                        titleForm: 'Họ',
                         titleRequired: true,
                         maxLines: 1,
                         width: 240.w,
@@ -99,7 +99,7 @@ class _TabletRegisterScreenState extends State<TabletRegisterScreen> {
                     height: 12.h,
                   ),
                   const CommonTextFormField(
-                    titleForm: 'Phone Number',
+                    titleForm: 'Số điện thoại',
                     titleRequired: true,
                     maxLines: 1,
                     textInputType: TextInputType.phone,
@@ -117,7 +117,7 @@ class _TabletRegisterScreenState extends State<TabletRegisterScreen> {
                     height: 12.h,
                   ),
                   const CommonTextFormField(
-                    titleForm: 'Password',
+                    titleForm: 'Mật khẩu',
                     titleRequired: true,
                     maxLines: 1,
                     textInputType: TextInputType.none,
@@ -127,7 +127,7 @@ class _TabletRegisterScreenState extends State<TabletRegisterScreen> {
                     height: 12.h,
                   ),
                   const CommonTextFormField(
-                    titleForm: 'Confirm Password',
+                    titleForm: 'Xác nhận mật khẩu',
                     titleRequired: true,
                     maxLines: 1,
                     textInputType: TextInputType.none,
@@ -137,7 +137,7 @@ class _TabletRegisterScreenState extends State<TabletRegisterScreen> {
                     height: 24.h,
                   ),
                   CommonButton(
-                    content: 'Sign Up',
+                    content: 'Đăng ký',
                     width: 280.w,
                     onTap: () {
                       context.go('/register/email_verify');

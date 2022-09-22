@@ -5,6 +5,8 @@ import 'package:goods_traceability_mobile/configs/app_color.dart';
 import 'package:goods_traceability_mobile/configs/app_size.dart';
 import 'package:goods_traceability_mobile/configs/app_style.dart';
 import 'package:goods_traceability_mobile/gen/assets.gen.dart';
+import 'package:goods_traceability_mobile/utils/shared/common_button.dart';
+import 'package:goods_traceability_mobile/utils/shared/common_dialog.dart';
 import 'package:pinput/pinput.dart';
 
 class TabletEmailVerifyScreen extends StatefulWidget {
@@ -18,6 +20,7 @@ class TabletEmailVerifyScreen extends StatefulWidget {
 class _TabletEmailVerifyScreenState extends State<TabletEmailVerifyScreen> {
   @override
   Widget build(BuildContext context) {
+    final TextEditingController pinCodeText = TextEditingController();
     return Scaffold(
       body: SafeArea(
         child: Container(
@@ -58,7 +61,7 @@ class _TabletEmailVerifyScreenState extends State<TabletEmailVerifyScreen> {
                     ),
                   ),
                   Text(
-                    'Email Authentication',
+                    'Xác thực Email', //'Email Authentication'
                     style: AppStyles.displayLarge.copyWith(
                       color: AppColors.kPrimary1,
                       fontSize: 56.sp,
@@ -69,7 +72,7 @@ class _TabletEmailVerifyScreenState extends State<TabletEmailVerifyScreen> {
                     height: 28.h,
                   ),
                   Text(
-                    'Please verification code sent to your email',
+                    "Vui lòng nhập mã xác minh được gửi đến email của bạn", // Please enter the verification code sent to your email
                     style: AppStyles.titleMedium.copyWith(
                       color: AppColors.kBlack,
                       fontWeight: FontWeight.w500,
@@ -79,13 +82,36 @@ class _TabletEmailVerifyScreenState extends State<TabletEmailVerifyScreen> {
                     height: 72.h,
                   ),
                   Pinput(
+                    controller: pinCodeText,
+                    autofocus: true,
                     length: 6,
                     pinputAutovalidateMode: PinputAutovalidateMode.onSubmit,
-                    // validator: (s) {
-                    //   // return s == '123456' ? null : 'Pin is incorrect';
-                    // },
                     showCursor: true,
-                    onCompleted: (pin) => {},
+                    onCompleted: (pin) => {
+                      if (pin == '123456')
+                        {
+                          CommonShowDialog.showConfirmDialog(
+                            context: context,
+                            title: 'Thông báo',
+                            content: 'Pin code chính xác!',
+                            contentAction1: 'Hủy',
+                            onTapAction1: () => Navigator.pop(context),
+                            contentAction2: 'Đồng ý',
+                            onTapAction2: () => Navigator.pop(context),
+                          ),
+                        }
+                      else
+                        {
+                          CommonShowDialog.showNotiAlterDialog(
+                            context: context,
+                            title: 'Thông báo',
+                            content:
+                                'Mã xác thực không chính xác, mời nhập lại!',
+                            contentAction: 'OK',
+                            onTapAction: () => Navigator.pop(context),
+                          ),
+                        }
+                    },
                     animationCurve: Curves.linear,
                     cursor: Container(), // hide cursor
                     defaultPinTheme: PinTheme(
@@ -116,6 +142,63 @@ class _TabletEmailVerifyScreenState extends State<TabletEmailVerifyScreen> {
                       ),
                     ),
                     separator: SizedBox(width: 52.w),
+                  ),
+                  SizedBox(
+                    height: 80.h,
+                  ),
+                  CommonButton(
+                    width: 272.w,
+                    onTap: () {
+                      if (pinCodeText.text.isEmpty) {
+                        CommonShowDialog.showNotiAlterDialog(
+                          context: context,
+                          title: "Thông báo",
+                          content:
+                              "Bạn chưa nhập pin code, mời nhập để xác nhận!",
+                          contentAction: "OK",
+                          onTapAction: () => Navigator.pop(context),
+                        );
+                      } else if (pinCodeText.text != '123456') {
+                        CommonShowDialog.showNotiAlterDialog(
+                          context: context,
+                          title: 'Thông báo',
+                          content: 'Mã xác thực không chính xác, mời nhập lại!',
+                          contentAction: 'OK',
+                          onTapAction: () => Navigator.pop(context),
+                        );
+                      } else {
+                        print('Thành công');
+                      }
+                    },
+                    content: 'Xác thực',
+                  ),
+                  SizedBox(
+                    height: 80.h,
+                  ),
+                  RichText(
+                    text: TextSpan(
+                      text:
+                          'Bằng cách tiếp tục, bạn xác nhận rằng bạn đã đọc, hiểu và đồng ý với chúng tôi về',
+                      style: AppStyles.labelMedium,
+                      children: <TextSpan>[
+                        TextSpan(
+                          text: ' các điều khoản dịch vụ',
+                          style: AppStyles.labelMedium.copyWith(
+                            color: AppColors.kPrimary2,
+                          ),
+                        ),
+                        TextSpan(
+                          text: ' và',
+                          style: AppStyles.labelMedium,
+                        ),
+                        TextSpan(
+                          text: ' chính sách bảo mật',
+                          style: AppStyles.labelMedium.copyWith(
+                            color: AppColors.kPrimary2,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ],
               ),
