@@ -19,6 +19,7 @@ class _TabletLoginScreenState extends State<TabletLoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: AppColors.kPrimary4,
       body: SafeArea(
         child: Container(
@@ -33,13 +34,11 @@ class _TabletLoginScreenState extends State<TabletLoginScreen> {
             child: Container(
               margin: EdgeInsets.only(
                 right: 80.w,
-                top: 64.h,
-                bottom: 64.h,
+                top: 56.h,
+                bottom: 56.h,
               ),
-              padding: EdgeInsets.symmetric(horizontal: 32.w, vertical: 12.h),
-              constraints: BoxConstraints(
-                maxWidth: 560.w,
-              ),
+              padding: EdgeInsets.symmetric(horizontal: 32.w, vertical: 24.h),
+              constraints: BoxConstraints(maxWidth: 560.w, maxHeight: 720.h),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(AppSizes.superLargeRadius),
                 color: AppColors.kPrimary4.withOpacity(0.8),
@@ -82,7 +81,6 @@ class _TabletLoginScreenState extends State<TabletLoginScreen> {
                   const CommonTextFormField(
                     titleForm: 'Mật khẩu',
                     maxLines: 1,
-                    textInputType: TextInputType.none,
                     obscureText: true,
                   ),
                   SizedBox(
@@ -92,7 +90,7 @@ class _TabletLoginScreenState extends State<TabletLoginScreen> {
                     alignment: Alignment.centerRight,
                     child: Text(
                       'Quên mật khẩu?',
-                      style: AppStyles.labelSmall
+                      style: AppStyles.bodySmall
                           .copyWith(color: AppColors.kPrimary2),
                     ),
                   ),
@@ -101,7 +99,6 @@ class _TabletLoginScreenState extends State<TabletLoginScreen> {
                   ),
                   CommonButton(
                     content: 'Đăng nhập',
-                    width: 280.w,
                     onTap: () {},
                   ),
                 ],
@@ -114,22 +111,37 @@ class _TabletLoginScreenState extends State<TabletLoginScreen> {
   }
 
   Widget switchToSignUp({required Function() onTap}) {
-    return InkWell(
-      onTap: onTap,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          Padding(
-            padding: EdgeInsets.only(top: 14.h),
-            child: Text(
-              'Bạn chưa có tài khoản?' '\n' ' Đăng ký ngay',
-              style: AppStyles.titleSmall.copyWith(
-                color: AppColors.kPrimary2,
-              ),
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.end,
+      children: [
+        Padding(
+          padding: EdgeInsets.only(top: 14.h),
+          child: InkWell(
+            onTap: onTap,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Text(
+                  'Bạn chưa có tài khoản?',
+                  style: AppStyles.titleSmall.copyWith(
+                    color: AppColors.kPrimary2,
+                  ),
+                ),
+                SizedBox(
+                  height: 4.h,
+                ),
+                Text(
+                  '   Đăng ký ngay',
+                  style: AppStyles.titleSmall.copyWith(
+                    color: AppColors.kPrimary2,
+                  ),
+                ),
+              ],
             ),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 
@@ -148,14 +160,14 @@ class _TabletLoginScreenState extends State<TabletLoginScreen> {
             'Đăng nhập với MetaMask',
             style: AppStyles.bodyLarge.copyWith(
               color: AppColors.kWhite,
+              fontWeight: FontWeight.w700,
             ),
           ),
           SizedBox(
             width: 4.w,
           ),
           Container(
-            height: 38.r,
-            width: 38.r,
+            margin: EdgeInsets.symmetric(horizontal: 16.w),
             decoration: const BoxDecoration(
               shape: BoxShape.circle,
               color: AppColors.kWhite,

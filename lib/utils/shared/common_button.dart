@@ -12,7 +12,7 @@ class CommonButton extends StatelessWidget {
   final Color? backgroundColor;
   final TextStyle? contentTextStyle;
   final double? borderRadiusSize;
-  final EdgeInsetsGeometry? contentPadding;
+  final EdgeInsetsGeometry? contentPadding, margin;
 
   /// default aligment to center
   final Alignment? alignment;
@@ -27,6 +27,7 @@ class CommonButton extends StatelessWidget {
     this.contentTextStyle,
     this.borderRadiusSize,
     this.contentPadding,
+    this.margin,
   }) : super(key: key);
 
   @override
@@ -38,7 +39,8 @@ class CommonButton extends StatelessWidget {
         child: Container(
           height: height,
           width: width,
-          padding: contentPadding ?? EdgeInsets.symmetric(vertical: 24.h),
+          margin: margin,
+          padding: contentPadding ?? EdgeInsets.symmetric(vertical: 16.h),
           decoration: BoxDecoration(
             color: backgroundColor ?? AppColors.kPrimary1,
             borderRadius:

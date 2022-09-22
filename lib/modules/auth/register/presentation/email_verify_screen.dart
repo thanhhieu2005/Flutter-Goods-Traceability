@@ -22,6 +22,7 @@ class _TabletEmailVerifyScreenState extends State<TabletEmailVerifyScreen> {
   Widget build(BuildContext context) {
     final TextEditingController pinCodeText = TextEditingController();
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: SafeArea(
         child: Container(
           decoration: BoxDecoration(
@@ -32,6 +33,10 @@ class _TabletEmailVerifyScreenState extends State<TabletEmailVerifyScreen> {
           child: Align(
             alignment: Alignment.center,
             child: Container(
+              constraints: BoxConstraints(
+                maxHeight: 800.h,
+                minHeight: 640.h,
+              ),
               margin: EdgeInsets.symmetric(
                 vertical: 64.h,
                 horizontal: 64.w,
@@ -59,6 +64,9 @@ class _TabletEmailVerifyScreenState extends State<TabletEmailVerifyScreen> {
                         size: 48.r,
                       ),
                     ),
+                  ),
+                  SizedBox(
+                    height: 32.h,
                   ),
                   Text(
                     'Xác thực Email', //'Email Authentication'
@@ -172,32 +180,38 @@ class _TabletEmailVerifyScreenState extends State<TabletEmailVerifyScreen> {
                     },
                     content: 'Xác thực',
                   ),
-                  SizedBox(
-                    height: 80.h,
-                  ),
-                  RichText(
-                    text: TextSpan(
-                      text:
-                          'Bằng cách tiếp tục, bạn xác nhận rằng bạn đã đọc, hiểu và đồng ý với chúng tôi về',
-                      style: AppStyles.labelMedium,
-                      children: <TextSpan>[
-                        TextSpan(
-                          text: ' các điều khoản dịch vụ',
-                          style: AppStyles.labelMedium.copyWith(
-                            color: AppColors.kPrimary2,
+                  const Spacer(),
+                  Container(
+                    margin: EdgeInsets.only(bottom: 32.h),
+                    child: RichText(
+                      textAlign: TextAlign.center,
+                      text: TextSpan(
+                        text:
+                            'Bằng cách tiếp tục, bạn xác nhận rằng bạn đã đọc, hiểu và đồng ý với chúng tôi về',
+                        style: AppStyles.bodySmall.copyWith(
+                          color: AppColors.kColor9,
+                        ),
+                        children: <TextSpan>[
+                          TextSpan(
+                            text: ' các điều khoản dịch vụ',
+                            style: AppStyles.bodySmall.copyWith(
+                              color: AppColors.kPrimary2,
+                              fontWeight: FontWeight.w500,
+                            ),
                           ),
-                        ),
-                        TextSpan(
-                          text: ' và',
-                          style: AppStyles.labelMedium,
-                        ),
-                        TextSpan(
-                          text: ' chính sách bảo mật',
-                          style: AppStyles.labelMedium.copyWith(
-                            color: AppColors.kPrimary2,
+                          TextSpan(
+                            text: ' và',
+                            style: AppStyles.bodyMedium,
                           ),
-                        ),
-                      ],
+                          TextSpan(
+                            text: ' chính sách bảo mật',
+                            style: AppStyles.bodySmall.copyWith(
+                              color: AppColors.kPrimary2,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ],

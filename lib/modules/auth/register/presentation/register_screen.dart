@@ -20,6 +20,7 @@ class _TabletRegisterScreenState extends State<TabletRegisterScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.kPrimary4,
+      resizeToAvoidBottomInset: false,
       body: SafeArea(
         child: Container(
           decoration: BoxDecoration(
@@ -33,13 +34,12 @@ class _TabletRegisterScreenState extends State<TabletRegisterScreen> {
             child: Container(
               margin: EdgeInsets.only(
                 right: 80.w,
-                top: 36.h,
-                bottom: 36.h,
+                top: 32.h,
+                bottom: 32.h,
               ),
-              padding: EdgeInsets.symmetric(horizontal: 32.w, vertical: 12.h),
+              padding: EdgeInsets.symmetric(horizontal: 32.w, vertical: 24.h),
               constraints: BoxConstraints(
-                maxWidth: 560.w,
-              ),
+                  maxWidth: 560.w, minHeight: 680.h, maxHeight: 880.h),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(AppSizes.superLargeRadius),
                 color: AppColors.kPrimary4.withOpacity(0.8),
@@ -48,25 +48,7 @@ class _TabletRegisterScreenState extends State<TabletRegisterScreen> {
                 mainAxisSize: MainAxisSize.max,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  InkWell(
-                    onTap: () {
-                      context.go('/');
-                    },
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.only(top: 14.h),
-                          child: Text(
-                            'Đã có tài khoản?' '\n' ' Đăng nhập ngay',
-                            style: AppStyles.titleSmall.copyWith(
-                              color: AppColors.kPrimary2,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
+                  toggleLoginScreen(context),
                   Text(
                     'Đăng ký',
                     style: AppStyles.displayLarge.copyWith(
@@ -120,7 +102,6 @@ class _TabletRegisterScreenState extends State<TabletRegisterScreen> {
                     titleForm: 'Mật khẩu',
                     titleRequired: true,
                     maxLines: 1,
-                    textInputType: TextInputType.none,
                     obscureText: true,
                   ),
                   SizedBox(
@@ -130,15 +111,13 @@ class _TabletRegisterScreenState extends State<TabletRegisterScreen> {
                     titleForm: 'Xác nhận mật khẩu',
                     titleRequired: true,
                     maxLines: 1,
-                    textInputType: TextInputType.none,
                     obscureText: true,
                   ),
                   SizedBox(
-                    height: 24.h,
+                    height: 28.h,
                   ),
                   CommonButton(
                     content: 'Đăng ký',
-                    width: 280.w,
                     onTap: () {
                       context.go('/register/email_verify');
                     },
@@ -149,6 +128,43 @@ class _TabletRegisterScreenState extends State<TabletRegisterScreen> {
           ),
         ),
       ),
+    );
+  }
+
+  Row toggleLoginScreen(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.end,
+      children: [
+        Padding(
+          padding: EdgeInsets.only(top: 14.h),
+          child: InkWell(
+            onTap: () {
+              context.go('/');
+            },
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Text(
+                  'Đã có tài khoản?',
+                  style: AppStyles.titleSmall.copyWith(
+                    color: AppColors.kPrimary2,
+                  ),
+                ),
+                SizedBox(
+                  height: 4.h,
+                ),
+                Text(
+                  '    Đăng nhập ngay',
+                  style: AppStyles.titleSmall.copyWith(
+                    color: AppColors.kPrimary2,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ],
     );
   }
 }

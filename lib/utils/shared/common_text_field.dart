@@ -15,7 +15,7 @@ class CommonTextFormField extends StatefulWidget {
   final TextInputAction? textInputAction;
   final TextInputType? textInputType;
   final bool? obscureText;
-  final double? width;
+  final double? width, height;
   const CommonTextFormField({
     super.key,
     this.readOnly = false,
@@ -29,7 +29,9 @@ class CommonTextFormField extends StatefulWidget {
     required this.titleForm,
     this.titleTextStyle,
     this.obscureText,
-    this.titleRequired = false, this.width,
+    this.titleRequired = false,
+    this.width,
+    this.height,
   });
 
   @override
@@ -75,6 +77,7 @@ class _CommonTextFormFieldState extends State<CommonTextFormField> {
         ),
         Container(
           width: widget.width,
+          height: 48.sp,
           decoration: BoxDecoration(
             color: !widget.readOnly ? AppColors.kWhite : AppColors.kGrey,
             borderRadius: BorderRadius.circular(AppSizes.smallRadius),
