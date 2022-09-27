@@ -8,19 +8,19 @@ import 'package:goods_traceability_mobile/gen/assets.gen.dart';
 import 'package:goods_traceability_mobile/utils/shared/common_button.dart';
 import 'package:goods_traceability_mobile/utils/shared/common_text_field.dart';
 
-class TabletLoginScreen extends StatefulWidget {
-  const TabletLoginScreen({super.key});
+class TabletRegisterScreen extends StatefulWidget {
+  const TabletRegisterScreen({super.key});
 
   @override
-  State<TabletLoginScreen> createState() => _TabletLoginScreenState();
+  State<TabletRegisterScreen> createState() => _TabletRegisterScreenState();
 }
 
-class _TabletLoginScreenState extends State<TabletLoginScreen> {
+class _TabletRegisterScreenState extends State<TabletRegisterScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
       backgroundColor: AppColors.kPrimary4,
+      resizeToAvoidBottomInset: false,
       body: SafeArea(
         child: Container(
           decoration: BoxDecoration(
@@ -34,11 +34,12 @@ class _TabletLoginScreenState extends State<TabletLoginScreen> {
             child: Container(
               margin: EdgeInsets.only(
                 right: 80.w,
-                top: 56.h,
-                bottom: 56.h,
+                top: 32.h,
+                bottom: 32.h,
               ),
               padding: EdgeInsets.symmetric(horizontal: 32.w, vertical: 24.h),
-              constraints: BoxConstraints(maxWidth: 560.w, maxHeight: 720.h),
+              constraints: BoxConstraints(
+                  maxWidth: 560.w, minHeight: 680.h, maxHeight: 880.h),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(AppSizes.superLargeRadius),
                 color: AppColors.kPrimary4.withOpacity(0.8),
@@ -47,59 +48,79 @@ class _TabletLoginScreenState extends State<TabletLoginScreen> {
                 mainAxisSize: MainAxisSize.max,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  switchToSignUp(
-                    onTap: () {
-                      GoRouter.of(context).go('/register');
-                    },
-                  ),
+                  toggleLoginScreen(context),
                   Text(
-                    'Đăng nhập',
+                    'Đăng ký',
                     style: AppStyles.displayLarge.copyWith(
-                      fontWeight: FontWeight.w700,
                       color: AppColors.kPrimary1,
+                      fontWeight: FontWeight.w700,
                     ),
                   ),
                   SizedBox(
-                    height: 36.h,
-                  ),
-                  signInMetaMask(),
-                  SizedBox(
-                    height: 24.h,
-                  ),
-                  dividerOtherSignIn(),
-                  SizedBox(
                     height: 20.h,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      CommonTextFormField(
+                        titleForm: 'Tên',
+                        titleRequired: true,
+                        maxLines: 1,
+                        width: 240.w,
+                      ),
+                      CommonTextFormField(
+                        titleForm: 'Họ',
+                        titleRequired: true,
+                        maxLines: 1,
+                        width: 240.w,
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 12.h,
+                  ),
+                  const CommonTextFormField(
+                    titleForm: 'Số điện thoại',
+                    titleRequired: true,
+                    maxLines: 1,
+                    textInputType: TextInputType.phone,
+                  ),
+                  SizedBox(
+                    height: 12.h,
                   ),
                   const CommonTextFormField(
                     titleForm: 'Email',
+                    titleRequired: true,
                     maxLines: 1,
                     textInputType: TextInputType.emailAddress,
                   ),
                   SizedBox(
-                    height: 16.h,
+                    height: 12.h,
                   ),
                   const CommonTextFormField(
                     titleForm: 'Mật khẩu',
+                    titleRequired: true,
                     maxLines: 1,
                     obscureText: true,
                   ),
                   SizedBox(
-                    height: 16.h,
+                    height: 12.h,
                   ),
-                  Align(
-                    alignment: Alignment.centerRight,
-                    child: Text(
-                      'Quên mật khẩu?',
-                      style: AppStyles.bodySmall
-                          .copyWith(color: AppColors.kPrimary2),
-                    ),
+                  const CommonTextFormField(
+                    titleForm: 'Xác nhận mật khẩu',
+                    titleRequired: true,
+                    maxLines: 1,
+                    obscureText: true,
                   ),
                   SizedBox(
-                    height: 32.h,
+                    height: 28.h,
                   ),
                   CommonButton(
-                    content: 'Đăng nhập',
-                    onTap: () {},
+                    content: 'Đăng ký',
+                    onTap: () {
+                      context.go('/register/email_verify');
+                    },
                   ),
                 ],
               ),
@@ -110,20 +131,22 @@ class _TabletLoginScreenState extends State<TabletLoginScreen> {
     );
   }
 
-  Widget switchToSignUp({required Function() onTap}) {
+  Widget toggleLoginScreen(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
         Padding(
           padding: EdgeInsets.only(top: 14.h),
           child: InkWell(
-            onTap: onTap,
+            onTap: () {
+              context.go('/');
+            },
             child: Column(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 Text(
-                  'Bạn chưa có tài khoản?',
+                  'Đã có tài khoản?',
                   style: AppStyles.titleSmall.copyWith(
                     color: AppColors.kPrimary2,
                   ),
@@ -132,75 +155,13 @@ class _TabletLoginScreenState extends State<TabletLoginScreen> {
                   height: 4.h,
                 ),
                 Text(
-                  '   Đăng ký ngay',
+                  '    Đăng nhập ngay',
                   style: AppStyles.titleSmall.copyWith(
                     color: AppColors.kPrimary2,
                   ),
                 ),
               ],
             ),
-          ),
-        ),
-      ],
-    );
-  }
-
-  Widget signInMetaMask() {
-    return Container(
-      decoration: BoxDecoration(
-        color: const Color(0xffF6851B),
-        borderRadius: BorderRadius.circular(10.r),
-      ),
-      padding: EdgeInsets.symmetric(vertical: 15.h, horizontal: 32.w),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Text(
-            'Đăng nhập với MetaMask',
-            style: AppStyles.bodyLarge.copyWith(
-              color: AppColors.kWhite,
-              fontWeight: FontWeight.w700,
-            ),
-          ),
-          SizedBox(
-            width: 4.w,
-          ),
-          Container(
-            margin: EdgeInsets.symmetric(horizontal: 16.w),
-            decoration: const BoxDecoration(
-              shape: BoxShape.circle,
-              color: AppColors.kWhite,
-            ),
-            child: Assets.images.logoMetamask.image(),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget dividerOtherSignIn() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
-        Container(
-          height: 2.h,
-          width: 140.w,
-          decoration: const BoxDecoration(
-            color: AppColors.kColor8,
-            shape: BoxShape.rectangle,
-          ),
-        ),
-        Text(
-          'Hoặc',
-          style: AppStyles.titleMedium,
-        ),
-        Container(
-          height: 2.h,
-          width: 140.w,
-          decoration: const BoxDecoration(
-            color: AppColors.kColor8,
-            shape: BoxShape.rectangle,
           ),
         ),
       ],

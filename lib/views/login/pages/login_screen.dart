@@ -7,20 +7,22 @@ import 'package:goods_traceability_mobile/configs/app_style.dart';
 import 'package:goods_traceability_mobile/gen/assets.gen.dart';
 import 'package:goods_traceability_mobile/utils/shared/common_button.dart';
 import 'package:goods_traceability_mobile/utils/shared/common_text_field.dart';
+import 'package:goods_traceability_mobile/views/login/widgets/divider_widget.dart';
+import 'package:goods_traceability_mobile/views/login/widgets/sign_in_metamask.dart';
 
-class TabletRegisterScreen extends StatefulWidget {
-  const TabletRegisterScreen({super.key});
+class TabletLoginScreen extends StatefulWidget {
+  const TabletLoginScreen({super.key});
 
   @override
-  State<TabletRegisterScreen> createState() => _TabletRegisterScreenState();
+  State<TabletLoginScreen> createState() => _TabletLoginScreenState();
 }
 
-class _TabletRegisterScreenState extends State<TabletRegisterScreen> {
+class _TabletLoginScreenState extends State<TabletLoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.kPrimary4,
       resizeToAvoidBottomInset: false,
+      backgroundColor: AppColors.kPrimary4,
       body: SafeArea(
         child: Container(
           decoration: BoxDecoration(
@@ -34,12 +36,11 @@ class _TabletRegisterScreenState extends State<TabletRegisterScreen> {
             child: Container(
               margin: EdgeInsets.only(
                 right: 80.w,
-                top: 32.h,
-                bottom: 32.h,
+                top: 56.h,
+                bottom: 56.h,
               ),
               padding: EdgeInsets.symmetric(horizontal: 32.w, vertical: 24.h),
-              constraints: BoxConstraints(
-                  maxWidth: 560.w, minHeight: 680.h, maxHeight: 880.h),
+              constraints: BoxConstraints(maxWidth: 560.w, maxHeight: 720.h),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(AppSizes.superLargeRadius),
                 color: AppColors.kPrimary4.withOpacity(0.8),
@@ -48,79 +49,61 @@ class _TabletRegisterScreenState extends State<TabletRegisterScreen> {
                 mainAxisSize: MainAxisSize.max,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  toggleLoginScreen(context),
+                  switchToSignUp(
+                    onTap: () {
+                      GoRouter.of(context).go('/register');
+                    },
+                  ),
                   Text(
-                    'Đăng ký',
+                    'Đăng nhập',
                     style: AppStyles.displayLarge.copyWith(
-                      color: AppColors.kPrimary1,
                       fontWeight: FontWeight.w700,
+                      color: AppColors.kPrimary1,
                     ),
                   ),
                   SizedBox(
+                    height: 36.h,
+                  ),
+                  SignInMetaMask(
+                    onTap: () {},
+                  ),
+                  SizedBox(
+                    height: 24.h,
+                  ),
+                  DividerWidget.dividerOtherSignIn(),
+                  SizedBox(
                     height: 20.h,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      CommonTextFormField(
-                        titleForm: 'Tên',
-                        titleRequired: true,
-                        maxLines: 1,
-                        width: 240.w,
-                      ),
-                      CommonTextFormField(
-                        titleForm: 'Họ',
-                        titleRequired: true,
-                        maxLines: 1,
-                        width: 240.w,
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 12.h,
-                  ),
-                  const CommonTextFormField(
-                    titleForm: 'Số điện thoại',
-                    titleRequired: true,
-                    maxLines: 1,
-                    textInputType: TextInputType.phone,
-                  ),
-                  SizedBox(
-                    height: 12.h,
                   ),
                   const CommonTextFormField(
                     titleForm: 'Email',
-                    titleRequired: true,
                     maxLines: 1,
                     textInputType: TextInputType.emailAddress,
                   ),
                   SizedBox(
-                    height: 12.h,
+                    height: 16.h,
                   ),
                   const CommonTextFormField(
                     titleForm: 'Mật khẩu',
-                    titleRequired: true,
                     maxLines: 1,
                     obscureText: true,
                   ),
                   SizedBox(
-                    height: 12.h,
+                    height: 16.h,
                   ),
-                  const CommonTextFormField(
-                    titleForm: 'Xác nhận mật khẩu',
-                    titleRequired: true,
-                    maxLines: 1,
-                    obscureText: true,
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: Text(
+                      'Quên mật khẩu?',
+                      style: AppStyles.bodySmall
+                          .copyWith(color: AppColors.kPrimary2),
+                    ),
                   ),
                   SizedBox(
-                    height: 28.h,
+                    height: 32.h,
                   ),
                   CommonButton(
-                    content: 'Đăng ký',
-                    onTap: () {
-                      context.go('/register/email_verify');
-                    },
+                    content: 'Đăng nhập',
+                    onTap: () {},
                   ),
                 ],
               ),
@@ -131,22 +114,20 @@ class _TabletRegisterScreenState extends State<TabletRegisterScreen> {
     );
   }
 
-  Row toggleLoginScreen(BuildContext context) {
+  Widget switchToSignUp({required Function() onTap}) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
         Padding(
           padding: EdgeInsets.only(top: 14.h),
           child: InkWell(
-            onTap: () {
-              context.go('/');
-            },
+            onTap: onTap,
             child: Column(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 Text(
-                  'Đã có tài khoản?',
+                  'Bạn chưa có tài khoản?',
                   style: AppStyles.titleSmall.copyWith(
                     color: AppColors.kPrimary2,
                   ),
@@ -155,7 +136,7 @@ class _TabletRegisterScreenState extends State<TabletRegisterScreen> {
                   height: 4.h,
                 ),
                 Text(
-                  '    Đăng nhập ngay',
+                  '   Đăng ký ngay',
                   style: AppStyles.titleSmall.copyWith(
                     color: AppColors.kPrimary2,
                   ),
@@ -168,3 +149,4 @@ class _TabletRegisterScreenState extends State<TabletRegisterScreen> {
     );
   }
 }
+

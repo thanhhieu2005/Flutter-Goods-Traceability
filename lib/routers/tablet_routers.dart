@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:goods_traceability_mobile/modules/auth/login/presentation/tablet/login_screen.dart';
-import 'package:goods_traceability_mobile/modules/auth/register/presentation/email_verify_screen.dart';
-import 'package:goods_traceability_mobile/modules/auth/register/presentation/register_screen.dart';
 import 'package:goods_traceability_mobile/responsive_layout/responsive_layout.dart';
+import 'package:goods_traceability_mobile/views/main_navigation/main_screen.dart';
+import 'package:goods_traceability_mobile/views/register/pages/email_verify_screen.dart';
+import 'package:goods_traceability_mobile/views/register/pages/register_screen.dart';
+
 
 class TabletGoRouter {
   final GoRouter router = GoRouter(
@@ -14,7 +15,7 @@ class TabletGoRouter {
           mobileScaffold: Container(
             color: Colors.red,
           ),
-          tabletScaffold: const TabletLoginScreen(),
+          tabletScaffold: const TabletMainScreen(),
         ),
       ),
       GoRoute(

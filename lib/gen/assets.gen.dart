@@ -36,8 +36,28 @@ class $FontsGen {
 class $AssetsIconsGen {
   const $AssetsIconsGen();
 
+  /// File path: assets/icons/ic_assign_role.svg
+  SvgGenImage get icAssignRole =>
+      const SvgGenImage('assets/icons/ic_assign_role.svg');
+
+  /// File path: assets/icons/ic_batch.svg
+  SvgGenImage get icBatch => const SvgGenImage('assets/icons/ic_batch.svg');
+
+  /// File path: assets/icons/ic_dashboard.svg
+  SvgGenImage get icDashboard =>
+      const SvgGenImage('assets/icons/ic_dashboard.svg');
+
+  /// File path: assets/icons/ic_logout.svg
+  SvgGenImage get icLogout => const SvgGenImage('assets/icons/ic_logout.svg');
+
+  /// File path: assets/icons/ic_noti.svg
+  SvgGenImage get icNoti => const SvgGenImage('assets/icons/ic_noti.svg');
+
   /// File path: assets/icons/ic_truck.svg
   SvgGenImage get icTruck => const SvgGenImage('assets/icons/ic_truck.svg');
+
+  /// File path: assets/icons/ic_user.svg
+  SvgGenImage get icUser => const SvgGenImage('assets/icons/ic_user.svg');
 }
 
 class $AssetsImagesGen {

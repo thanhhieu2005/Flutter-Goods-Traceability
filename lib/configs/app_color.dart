@@ -16,6 +16,7 @@ class AppColors {
 
   /// Sub Color
   static const Color kColor6 = Color(0xffB63939);
+  static const Color kColor7 = Color(0xffF0F0F0);
   static const Color kColor8 = Color(0xffDBD8E3);
   static const Color kColor9 = Color(0xff222831);
   static const Color kColor10 = Color(0xff1363DF);
